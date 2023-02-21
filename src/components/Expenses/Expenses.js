@@ -9,6 +9,10 @@ import "./Expenses.css";
 function Expenses(props) {
   const [filteredYear, setFilteredYear] = useState("All Years");
 
+  const liftKeyHandler = (key) => {
+    props.onDeleteExpense(key);
+  }
+
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
@@ -28,7 +32,7 @@ function Expenses(props) {
         onFilterExpenses={filterChangeHandler}
       />
       <ExpensesChart expenses={filteredExpenses}/>
-      <EpxensesList items={filteredExpenses}/>
+      <EpxensesList items={filteredExpenses} onLiftKey={liftKeyHandler} />
     </Card>
   );
 }
